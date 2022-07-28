@@ -91,10 +91,46 @@ class Render(object):
         if (0 < x < self.width) and (0 < y < self.height):
 
             #Esta función dibuja un punto en la pantalla.
-            self.framebuffer[y][x] = self.current_color #El color del punto es el color actual.
+            self.framebuffer[x][y] = self.current_color #El color del punto es el color actual.
     
 
-r = Render(100, 100) #Crea un objeto render con un tamaño de 1024x1024.
+#Ponerlo en otro archivo.
+class Obj(object):
+    def __init__(self, filename):
+
+        #Abriendo el archivo.
+        with open(filename) as f:
+            self.lines = f.read().splitlines() #Lee el archivo y lo separa por líneas.
+
+        #POr el momento solo se van a trabajar con las caras y con los vértices.
+        self.vertices = []
+        self.faces = []
+
+        for lines in self.lines: 
+            #Prefix va a ser el prefijo de la línea y value el valor de la línea.
+            prefix, value = lines.split(' ', 1) #Separa la línea por espacios. El 1 es para que solo separe una vez.
+            #print(lines.split(' ', 1))
+            
+            #Arreglar este código.
+            if prefix == 'v': #Si el prefijo es v, entonces es un vértice.
+                #print(value)
+                self.vertices.append(
+                    list(
+                        map(float, value.split(' '))
+                        )
+                    ) #Se agrega el valor de la línea a la lista de vértices.
+
+            if prefix == 'f': #Si el prefijo es v, entonces es un vértice.
+                #print(value)
+                self.faces.append([
+                    list(map(int, face.split('/')))
+                        for face in value.split(' ') #Quitando las diagonales.
+                    ]
+                ) #Se agrega el valor de la línea a la lista de vértices.
+
+        print(self.faces)
+
+r = Render(300, 300) #Crea un objeto render con un tamaño de 1024x1024.
 
 
 #r.current_color = color(200, 100, 0) #Cambia el color actual a uno diferente.
@@ -121,6 +157,12 @@ for x in range(300, 400):
 
 
 def line(x0, y0, x1, y1): #Función que dibuja una línea.
+
+    #Quitando decimales.
+    x0 = round(x0)
+    x1 = round(x1)
+    y0 = round(y0)
+    y1 = round(y1)
     
     dy = abs(y1 - y0) #Calcula la distancia entre los puntos.
     dx = abs(x1 - x0) #Calcula la distancia entre los puntos.
@@ -161,84 +203,41 @@ def line(x0, y0, x1, y1): #Función que dibuja una línea.
         else: #Si la línea es más alta que ancha.
             r.point(x, y)
 
+#Hacer mejor esta parte.
 
-class Obj(object):
-    def __init__(self, filename):
-        with open(filename) as f: 
-            #Dado un archivo, lee todo el archivo y lo guarda en una lista.
-            self.lines = f.read().splitlines()
-
-            #Por el momento, sólo se trabajará con los vértices.
-            self.vertices = []
-            self.faces = []
-
-            for line in self.lines:
-                prefix, value = line.split(' ', 1) #Separa en el primer espacio.
-
-                
-                if prefix == 'v': #Si es un vértice.
-                    self.vertices.append(
-                        list(
-                            map(float, value.split(' ')
-                            )
-                        )
-                    )
-                
-                if prefix == 'f': #Si es una cara.
-                    self.faces.append(
-                        list(
-                            map(
-                                float, value.split(' ')
-                            )
-                        )
-                    )
-
-    #i = 0
-    #while i <= 1:
-     #   x = x0 + i * (x1 - x0)
-     #   y = y0 + i * (y1 - y0)
-     #   r.point(round(x), round(y))
-     #   #i += 0.0001 #Número sacado de la manga.
-     #   i += 0.1 #Número sacado de la manga.
-
-#Matriz para dibujar un cuadrando.
+#Matriz del cuadrado.
 square = [
-    [100, 100],
-    [200, 100],
-    [200, 200],
-    [100, 100]
+    (100, 100),
+    (200, 100),
+    (200, 200),
+    (100, 200)
 ]
 
-center = (150, 150)
+center = (150, 150) #Centro del cuadrado.
 
+#Moviendo el cuadrado a la derecha.
 square_large = [
-    ((x - center[0]) * 0.5,
-     (y - center[1]) * 0.5) 
-    for x, y, in square
+    (
+        ((x - center[0]) * 1.5) + center[0], 
+        ((y - center[1]) * 3.5) + center[1]
+    ) 
+    for x, y in square
 ]
 
+tsquare = square_large #Cuadrado temporal. 
 
-#Trasladar el cuadrado a la derecha.
-square_right = [
-    [199, 100],
-    [199, 100],
-    [199, 200],
-    [199, 100]
-]
+last_point = tsquare[-1] #Último punto.
 
-tsquare = square_large
-
-
-#Último punto.
-last_point = tsquare[-1]
+#Dibujando el cuadrado.
+for point in tsquare:
+    line(*last_point, *point) #Dibuja una línea.
+    #print(last_point, point)
+    last_point = point #Último punto.
 
 
-#Dibujar el cuadrado.
-for point in square: 
-    line(*last_point, *point)
-    last_point = point
+o = Obj('cube.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
-o = Obj("obj.obj")
+#print(o.lines) #Imprime las líneas del archivo "cube.obj".
 
 #r.point(10, 10) #Dibuja un punto en la pantalla.
 #line(13, 20, 50, 50) #Dibuja una línea en la pantalla.
