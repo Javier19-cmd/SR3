@@ -120,15 +120,16 @@ class Obj(object):
                         )
                     ) #Se agrega el valor de la línea a la lista de vértices.
 
+            #A cada cara se le quita el espacio, luego se le quita la diagonal y por último se convierten a entero.
             if prefix == 'f': #Si el prefijo es v, entonces es un vértice.
                 #print(value)
                 self.faces.append([
-                    list(map(int, face.split('/')))
-                        for face in value.split(' ') #Quitando las diagonales.
+                    list(map(int, face.split('/'))) #Quitando las diagonales.
+                        for face in value.split(' ') 
                     ]
                 ) #Se agrega el valor de la línea a la lista de vértices.
 
-        print(self.faces)
+        #print(self.faces)
 
 r = Render(300, 300) #Crea un objeto render con un tamaño de 1024x1024.
 
@@ -205,6 +206,7 @@ def line(x0, y0, x1, y1): #Función que dibuja una línea.
 
 #Hacer mejor esta parte.
 
+"""
 #Matriz del cuadrado.
 square = [
     (100, 100),
@@ -233,9 +235,66 @@ for point in tsquare:
     line(*last_point, *point) #Dibuja una línea.
     #print(last_point, point)
     last_point = point #Último punto.
+"""
+cube = Obj('cube.obj') #Crea un objeto "o" con el archivo "cube.obj".
+
+#Función que transforma el vértice.
+def transform_vertex(vertex, scale, translate):
+    #print("Vertex: ", vertex)
+    return [
+        (
+            (vertex[0] * scale[0]) + translate[0], #X.
+            (vertex[1] * scale[1]) + translate[1] #Y.
+        )
+    ]
+
+scale_factor = (100, 100) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+translate_factor = (150, 150) #Traslación. Esto es algo que se tiene que recibir en la función.
+
+#Recorriendo las caras e imprimiéndolas.
+for face in cube.faces: 
+    #print("Face: ", face)
+
+    f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
+    f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
+    f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
+    f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
+
+    v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
+    v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
+    v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
+    v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
 
 
-o = Obj('cube.obj') #Crea un objeto "o" con el archivo "cube.obj".
+    line(
+        v1[0][0], #X del vértice 1.
+        v1[0][1], #Y del vértice 1.
+        v2[0][0], #X del vértice 2.
+        v2[0][1]  #Y del vértice 2.
+    ) #El vértice 1 es el índice 0 del array.
+
+    line(
+        v2[0][0], #X del vértice 2.
+        v2[0][1], #Y del vértice 2.
+        v3[0][0], #X del vértice 3.
+        v3[0][1]  #Y del vértice 3.
+    )
+
+    line(
+        v3[0][0], #X del vértice 3.
+        v3[0][1], #Y del vértice 3.
+        v4[0][0], #X del vértice 4.
+        v4[0][1]  #Y del vértice 4.
+    )
+
+    line(
+        v4[0][0], #X del vértice 4.
+        v4[0][1], #Y del vértice 4.
+        v1[0][0], #X del vértice 1.
+        v1[0][1]  #Y del vértice 1.
+    )
+    
+    #break
 
 #print(o.lines) #Imprime las líneas del archivo "cube.obj".
 
