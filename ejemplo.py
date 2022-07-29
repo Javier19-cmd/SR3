@@ -247,7 +247,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('face.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('Range.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
@@ -259,86 +259,89 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (5, 5) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+scale_factor = (10, 10) #Factor de escala. Esto es algo que se tiene que recibir en la función.
 translate_factor = (150, 150) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
 for face in cube.faces: 
-    #print("Face: ", face)
-    if len(face) == 4: 
-        
-        f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
-        f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
-        f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
-        f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
+     
+    if len(face) != 0:
+    
+        #print("Face: ", face)
+        if len(face) == 4: 
+            
+            f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
+            f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
+            f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
+            f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
 
-        v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
-        v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
-        v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
-        v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
-
-
-        line(
-            v1[0][0], #X del vértice 1.
-            v1[0][1], #Y del vértice 1.
-            v2[0][0], #X del vértice 2.
-            v2[0][1]  #Y del vértice 2.
-        ) #El vértice 1 es el índice 0 del array.
-
-        line(
-            v2[0][0], #X del vértice 2.
-            v2[0][1], #Y del vértice 2.
-            v3[0][0], #X del vértice 3.
-            v3[0][1]  #Y del vértice 3.
-        )
-
-        line(
-            v3[0][0], #X del vértice 3.
-            v3[0][1], #Y del vértice 3.
-            v4[0][0], #X del vértice 4.
-            v4[0][1]  #Y del vértice 4.
-        )
-
-        line(
-            v4[0][0], #X del vértice 4.
-            v4[0][1], #Y del vértice 4.
-            v1[0][0], #X del vértice 1.
-            v1[0][1]  #Y del vértice 1.
-        )
-
-    if len(face) == 3: 
-
-        f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
-        f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
-        f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
-        #f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
-
-        v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
-        v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
-        v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
-        #v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
+            v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
+            v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
+            v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
+            v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
 
 
-        line(
-            v1[0][0], #X del vértice 1.
-            v1[0][1], #Y del vértice 1.
-            v2[0][0], #X del vértice 2.
-            v2[0][1]  #Y del vértice 2.
-        ) #El vértice 1 es el índice 0 del array.
+            line(
+                v1[0][0], #X del vértice 1.
+                v1[0][1], #Y del vértice 1.
+                v2[0][0], #X del vértice 2.
+                v2[0][1]  #Y del vértice 2.
+            ) #El vértice 1 es el índice 0 del array.
 
-        line(
-            v2[0][0], #X del vértice 2.
-            v2[0][1], #Y del vértice 2.
-            v3[0][0], #X del vértice 3.
-            v3[0][1]  #Y del vértice 3.
-        )
+            line(
+                v2[0][0], #X del vértice 2.
+                v2[0][1], #Y del vértice 2.
+                v3[0][0], #X del vértice 3.
+                v3[0][1]  #Y del vértice 3.
+            )
 
-        line(
-            v3[0][0], #X del vértice 3.
-            v3[0][1], #Y del vértice 3.
-            v4[0][0], #X del vértice 4.
-            v4[0][1]  #Y del vértice 4.
-        )
+            line(
+                v3[0][0], #X del vértice 3.
+                v3[0][1], #Y del vértice 3.
+                v4[0][0], #X del vértice 4.
+                v4[0][1]  #Y del vértice 4.
+            )
+
+            line(
+                v4[0][0], #X del vértice 4.
+                v4[0][1], #Y del vértice 4.
+                v1[0][0], #X del vértice 1.
+                v1[0][1]  #Y del vértice 1.
+            )
+
+        if len(face) == 3: 
+
+            f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
+            f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
+            f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
+            #f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
+
+            v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
+            v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
+            v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
+            #v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
+
+
+            line(
+                v1[0][0], #X del vértice 1.
+                v1[0][1], #Y del vértice 1.
+                v2[0][0], #X del vértice 2.
+                v2[0][1]  #Y del vértice 2.
+            ) #El vértice 1 es el índice 0 del array.
+
+            line(
+                v2[0][0], #X del vértice 2.
+                v2[0][1], #Y del vértice 2.
+                v3[0][0], #X del vértice 3.
+                v3[0][1]  #Y del vértice 3.
+            )
+
+            # line(
+            #     v3[0][0], #X del vértice 3.
+            #     v3[0][1], #Y del vértice 3.
+            #     v4[0][0], #X del vértice 4.
+            #     v4[0][1]  #Y del vértice 4.
+            # )
     
     #break
 
