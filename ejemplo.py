@@ -28,6 +28,7 @@ def color(r, g, b): #Función que crea el color.
 #Colorea un punto de la imagen.
 BLACK = color(0, 0, 0)
 WHITE = color(255, 255, 255)
+RED = color(255, 0, 0)
 
 #Render podría ser un archivo aparte. Este archivo importaría las funciones de utilidades y los métodos que ya se crearon en el archivo SR1.py.
 class Render(object):
@@ -35,7 +36,8 @@ class Render(object):
     def __init__(self,width, height):
         self.width = width
         self.height = height
-        self.current_color = WHITE
+        self.current_color = BLACK
+        print("Color: ", self.current_color)
         self.clear() #Limpiar la pantalla.
     
     #Método que se usará para llenar de bits la pantalla.
@@ -136,7 +138,7 @@ r = Render(300, 300) #Crea un objeto render con un tamaño de 1024x1024.
 
 #r.current_color = color(200, 100, 0) #Cambia el color actual a uno diferente.
 
-r.current_color = WHITE #Cambia el color actual a blanco.
+r.current_color = RED #Cambia el color actual a rojo.
 
 """
 #Esto hace la línea en diagonal.
@@ -236,7 +238,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('Humvee.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('cube2.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
@@ -248,7 +250,7 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (100, 100) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+scale_factor = (50, 50) #Factor de escala. Esto es algo que se tiene que recibir en la función.
 translate_factor = (150, 150) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
