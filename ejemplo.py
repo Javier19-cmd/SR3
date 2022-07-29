@@ -108,6 +108,8 @@ class Obj(object):
         self.vertices = []
         self.faces = []
 
+        #print(self.lines)
+
         for lines in self.lines:
             #print(lines) 
             #Prefix va a ser el prefijo de la línea y value el valor de la línea.
@@ -142,7 +144,7 @@ class Obj(object):
 
         #print(self.faces)
 
-r = Render(1024, 1024) #Crea un objeto render con un tamaño de 1024x1024.
+r = Render(3072, 3072) #Crea un objeto render con un tamaño de 1024x1024.
 
 
 #r.current_color = color(200, 100, 0) #Cambia el color actual a uno diferente.
@@ -259,8 +261,8 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (10, 10) #Factor de escala. Esto es algo que se tiene que recibir en la función.
-translate_factor = (150, 150) #Traslación. Esto es algo que se tiene que recibir en la función.
+scale_factor = (450, 450) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+translate_factor = (5000, 400) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
 for face in cube.faces: 
