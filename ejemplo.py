@@ -262,7 +262,7 @@ def transform_vertex(vertex, scale, translate):
     ]
 
 scale_factor = (450, 450) #Factor de escala. Esto es algo que se tiene que recibir en la función.
-translate_factor = (5000, 400) #Traslación. Esto es algo que se tiene que recibir en la función.
+translate_factor = (5200, 400) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
 for face in cube.faces: 
