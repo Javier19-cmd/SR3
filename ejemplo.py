@@ -181,7 +181,7 @@ def line(x0, y0, x1, y1): #Función que dibuja una línea.
         y0, y1 = y1, y0 #Intercambia los valores de "y0" y "y1". Esto es para que la línea se dibuje correctamente.
     
     #Si la línea es más ancha que alta.
-    dy = y1 - y0
+    dy = abs(y1 - y0)
     dx = x1 - x0
     #m = (dy / dx) * dx * 2
 
@@ -236,7 +236,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('cube.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('Humvee.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
