@@ -144,7 +144,7 @@ class Obj(object):
 
         #print(self.faces)
 
-r = Render(3072, 3072) #Crea un objeto render con un tamaño de 1024x1024.
+r = Render(1024, 1024) #Crea un objeto render con un tamaño de 1024x1024.
 
 
 #r.current_color = color(200, 100, 0) #Cambia el color actual a uno diferente.
@@ -249,7 +249,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('Range.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('Fiat.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
@@ -261,8 +261,8 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (450, 450) #Factor de escala. Esto es algo que se tiene que recibir en la función.
-translate_factor = (5200, 400) #Traslación. Esto es algo que se tiene que recibir en la función.
+scale_factor = (200, 200) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+translate_factor = (512, 200) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
 for face in cube.faces: 
