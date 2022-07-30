@@ -1,4 +1,5 @@
 import struct
+import re
 
 #Set de utilidades. Estas funciones se pueden hacer en otro archivo para mayor comodidad.
 
@@ -111,35 +112,39 @@ class Obj(object):
         #print(self.lines)
 
         for lines in self.lines:
-            #print(lines) 
-            #Prefix va a ser el prefijo de la línea y value el valor de la línea.
-            #prefix, value = lines.split(' ', 2) #Separa la línea por espacios. El 1 es para que solo separe una vez.
-            #print(lines.split(' ', 1))
 
-            prefix, value = lines.split(' ' , 1) #Separa la línea por espacios. El 1 es para que solo separe una vez.
+            if len(lines) > 0: 
+                #print(lines) 
+                #Prefix va a ser el prefijo de la línea y value el valor de la línea.
+                #prefix, value = lines.split(' ', 2) #Separa la línea por espacios. El 1 es para que solo separe una vez.
+                #print(lines.split(' ', 1))
 
-            #print(prefix)
-            #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            #print(value)
+                prefix, value = lines.split(' ', 1) #Separa la línea por espacios. El 1 es para que solo separe una vez.
+            
 
-            #Todo tiene que ser en el Render. Prefix tiene que tener el v o f y value lo demás.
-
-            #Arreglar este código.
-            if prefix == 'v': #Si el prefijo es v, entonces es un vértice.
+                #print(prefix)
+                #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 #print(value)
-                self.vertices.append(
-                     #Recorrer la lista y convertir cada valor a float.
-                    list(map(float, value.split(' ')))
+
+                #Todo tiene que ser en el Render. Prefix tiene que tener el v o f y value lo demás.
+
+                #Arreglar este código.
+                if prefix == 'v': #Si el prefijo es v, entonces es un vértice.
+                    #print(value)
+                    self.vertices.append(
+                        #Recorrer la lista y convertir cada valor a float.
+                        list(map(float, value.split(' ')))
+                        ) #Se agrega el valor de la línea a la lista de vértices.
+
+                #A cada cara se le quita el espacio, luego se le quita la diagonal y por último se convierten a entero.
+                elif prefix == 'f': #Si el prefijo es v, entonces es un vértice.
+                #     #print(value)
+                    self.faces.append([
+                        list(map(int, face.split('/'))) #Quitando las diagonales.
+                            for face in value.split(' ')
+                        ]
                     ) #Se agrega el valor de la línea a la lista de vértices.
 
-            #A cada cara se le quita el espacio, luego se le quita la diagonal y por último se convierten a entero.
-            if prefix == 'f': #Si el prefijo es v, entonces es un vértice.
-                #print(value)
-                self.faces.append([
-                    list(map(int, face.split('/'))) #Quitando las diagonales.
-                        for face in value.split(' ')
-                    ]
-            ) #Se agrega el valor de la línea a la lista de vértices.
         #print(self.faces)
 
 r = Render(1024, 1024) #Crea un objeto render con un tamaño de 1024x1024.
@@ -259,57 +264,53 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (200, 200) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+scale_factor = (10, 10) #Factor de escala. Esto es algo que se tiene que recibir en la función.
 translate_factor = (512, 200) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
 for face in cube.faces: 
      
-    if len(face) != 0:
-    
-        #print("Face: ", face)
-        if len(face) == 4: 
-            
-            f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
-            f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
-            f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
-            f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
+    #print("Face: ", face)
+    if len(face) == 4: 
+        
+        f1 = face[0][0] - 1 #Restando uno para estar en el índice correcto.
+        f2 = face[1][0] - 1 #Restando uno para estar en el índice correcto.
+        f3 = face[2][0] - 1 #Restando uno para estar en el índice correcto.
+        f4 = face[3][0] - 1 #Restando uno para estar en el índice correcto.
 
-            v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
-            v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
-            v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
-            v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
+        v1 = transform_vertex(cube.vertices[f1], scale_factor, translate_factor) #Obteniendo el vértice 1.
+        v2 = transform_vertex(cube.vertices[f2], scale_factor, translate_factor) #Obteniendo el vértice 2.
+        v3 = transform_vertex(cube.vertices[f3], scale_factor, translate_factor) #Obteniendo el vértice 3.
+        v4 = transform_vertex(cube.vertices[f4], scale_factor, translate_factor) #Obteniendo el vértice 4.
 
 
-            line(
-                v1[0][0], #X del vértice 1.
-                v1[0][1], #Y del vértice 1.
-                v2[0][0], #X del vértice 2.
-                v2[0][1]  #Y del vértice 2.
-            ) #El vértice 1 es el índice 0 del array.
+        line(
+            v1[0][0], #X del vértice 1.
+            v1[0][1], #Y del vértice 1.
+            v2[0][0], #X del vértice 2.
+            v2[0][1]  #Y del vértice 2.
+        ) #El vértice 1 es el índice 0 del array.
 
-            line(
-                v2[0][0], #X del vértice 2.
-                v2[0][1], #Y del vértice 2.
-                v3[0][0], #X del vértice 3.
-                v3[0][1]  #Y del vértice 3.
-            )
+        line(
+            v2[0][0], #X del vértice 2.
+            v2[0][1], #Y del vértice 2.
+            v3[0][0], #X del vértice 3.
+            v3[0][1]  #Y del vértice 3.
+        )
 
-            line(
-                v3[0][0], #X del vértice 3.
-                v3[0][1], #Y del vértice 3.
-                v4[0][0], #X del vértice 4.
-                v4[0][1]  #Y del vértice 4.
-            )
+        line(
+            v3[0][0], #X del vértice 3.
+            v3[0][1], #Y del vértice 3.
+            v4[0][0], #X del vértice 4.
+            v4[0][1]  #Y del vértice 4.
+        )
 
-            line(
-                v4[0][0], #X del vértice 4.
-                v4[0][1], #Y del vértice 4.
-                v1[0][0], #X del vértice 1.
-                v1[0][1]  #Y del vértice 1.
-            )
-        else: 
-            pass
+        line(
+            v4[0][0], #X del vértice 4.
+            v4[0][1], #Y del vértice 4.
+            v1[0][0], #X del vértice 1.
+            v1[0][1]  #Y del vértice 1.
+        )
 
         if len(face) == 3: 
 
