@@ -128,9 +128,8 @@ class Obj(object):
             if prefix == 'v': #Si el prefijo es v, entonces es un vértice.
                 #print(value)
                 self.vertices.append(
-                    list(
-                        map(float, value.split(' '))
-                        )
+                     #Recorrer la lista y convertir cada valor a float.
+                    list(map(float, value.split(' ')))
                     ) #Se agrega el valor de la línea a la lista de vértices.
 
             #A cada cara se le quita el espacio, luego se le quita la diagonal y por último se convierten a entero.
@@ -138,10 +137,9 @@ class Obj(object):
                 #print(value)
                 self.faces.append([
                     list(map(int, face.split('/'))) #Quitando las diagonales.
-                        for face in value.split(' ') 
+                        for face in value.split(' ')
                     ]
-                ) #Se agrega el valor de la línea a la lista de vértices.
-
+            ) #Se agrega el valor de la línea a la lista de vértices.
         #print(self.faces)
 
 r = Render(1024, 1024) #Crea un objeto render con un tamaño de 1024x1024.
@@ -249,7 +247,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('Fiat.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('humvee.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
@@ -310,6 +308,8 @@ for face in cube.faces:
                 v1[0][0], #X del vértice 1.
                 v1[0][1]  #Y del vértice 1.
             )
+        else: 
+            pass
 
         if len(face) == 3: 
 

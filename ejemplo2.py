@@ -353,4 +353,4 @@ for face in cube.faces:
 #line(13, 20, 50, 50) #Dibuja una línea en la pantalla.
 #line(20, 13, 40, 80) #Dibuja una línea en la pantalla.
 #line(80, 40, 13, 20) #Dibuja una línea en la pantalla.
-r.write("a.bmp") #Escribe el archivo. El nombre del archivo es a.bmp, porque se le pasa una cadena de caracteres.
+r.write("b.bmp") #Escribe el archivo. El nombre del archivo es a.bmp, porque se le pasa una cadena de caracteres.
