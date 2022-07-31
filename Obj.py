@@ -2,6 +2,8 @@
 Referencias: 
 1. Arreglar el ValueError: could not convert string to float: 
     https://researchdatapod.com/python-valueerror-could-not-convert-string-to-float/
+2. Try except para los obj's que tienen doble /: 
+    https://bobbyhadz.com/blog/python-valueerror-invalid-literal-for-int-with-base-10
 """
 lines = []
 
