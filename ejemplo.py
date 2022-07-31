@@ -113,18 +113,13 @@ class Obj(object):
 
         for line in self.lines:
             
-           # print(type(line))
-            s = "no"
-            if len(line) == 0:
-                line = s
-
-            if line == s:
+            if not line or line.startswith("#"): #Si hay una línea vacía o una línea que tenga #, se salta. 
                 continue
 
 
 
             prefix, value = line.split(' ', 1) #Se hace split con salto de línea de 1.
-            print(prefix, value)
+            #print(prefix, value)
                 
             #prefix, value = lines.split(' ', 2) #Separa la línea por espacios. El 1 es para que solo separe una vez.
             #print(lines.split(' ', 1))
@@ -144,25 +139,23 @@ class Obj(object):
             if prefix == 'v': #Si el prefijo es v, entonces es un vértice.
                 
                 #print("Vértice")
-                print(value)
-                # self.vertices.append(
-                #     list(
-                #         map(float, value.split(' '))
-                #         )
-                #     ) #Se agrega el valor de la línea a la lista de vértices.
+                #print(value)
+                self.vertices.append(
+                    list(
+                        map(float, value.strip().split(' '))
+                        )
+                    ) #Se agrega el valor de la línea a la lista de vértices.
 
             #A cada cara se le quita el espacio, luego se le quita la diagonal y por último se convierten a entero.
             if prefix == 'f': #Si el prefijo es v, entonces es un vértice.
                 #print("Cara")
-                print(value)
+                #print(value)
                 
-                # self.faces.append([
-                #     list(map(int, face.split('/'))) #Quitando las diagonales.
-                #         for face in value.split(' ') 
-                #     ]
-                # ) #Se agrega el valor de la línea a la lista de vértices.
-            else:
-                pass
+                self.faces.append([
+                    list(map(int, face.split('/'))) #Quitando las diagonales.
+                        for face in value.strip().split(' ') 
+                    ]
+                ) #Se agrega el valor de la línea a la lista de vértices.
 
             #print(self.faces)
 
@@ -283,8 +276,8 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (15, 15) #Factor de escala. Esto es algo que se tiene que recibir en la función.
-translate_factor = (512, 200) #Traslación. Esto es algo que se tiene que recibir en la función.
+scale_factor = (5, 5) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+translate_factor = (500, 200) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
 for face in cube.faces: 

@@ -38,7 +38,7 @@ def Object(filename):
             faces.append(
                 [
                     list(
-                        map(int, face.split('/') #Se quita el / y se convierte a entero.
+                        map(int, face.strip().split('/') #Se quita el / y se convierte a entero.
                         )
                     ) 
                     for face in value.split(' ') #Se quita el espacio.
