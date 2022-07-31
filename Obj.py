@@ -35,16 +35,26 @@ def Object(filename):
         else: 
             continue
         if prefix == 'f': #Si el prefijo es f, se agrega el valor a la lista de caras.
-            faces.append(
-                [
-                    list(
-                        map(int, face.strip().split('/') #Se quita el / y se convierte a entero.
-                        )
-                    ) 
-                    for face in value.split(' ') #Se quita el espacio.
-                ]
-            )
-
+            try: 
+                faces.append(
+                    [
+                        list(
+                            map(int, face.strip().split('/') #Se quita el / y se convierte a entero.
+                            )
+                        ) 
+                        for face in value.strip().split(' ') #Se quita el espacio.
+                    ]
+                )
+            except:
+                faces.append(
+                    [
+                        list(
+                            map(int, face.strip().split('//') #Se quita el / y se convierte a entero.
+                            )
+                        ) 
+                        for face in value.strip().split(' ') #Se quita el espacio.
+                    ]
+                )
 #Función que transforma los vértices de la estructura de la imagen.
 def transform_vertex(vertex, scale, translate): 
     

@@ -152,11 +152,18 @@ class Obj(object):
                 #print(value)
                 #Quitar las / y las // porque hay obj's que pueden tener las dos.
                 #Hacer un if con eso.
-                self.faces.append([
-                    list(map(int, face.strip().split('/'))) #Quitando las diagonales.
-                        for face in value.strip().split(' ') 
-                    ]
-                ) #Se agrega el valor de la línea a la lista de vértices.
+                try:
+                    self.faces.append([
+                        list(map(int, face.strip().split('/'))) #Quitando las diagonales.
+                            for face in value.strip().split(' ')
+                        ]
+                    ) #Se agrega el valor de la línea a la lista de vértices.
+                except:
+                    self.faces.append([
+                        list(map(int, face.strip().split('//'))) #Quitando las diagonales.
+                            for face in value.strip().split(' ')
+                        ]
+                    )
 
             #print(self.faces)
 
@@ -265,7 +272,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('Jeep.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('Humvee.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
