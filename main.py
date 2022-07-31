@@ -3,6 +3,6 @@
 from Obj import * #Importando los métodos del archivo Obj.py
 
 def main():
-    Object('Porsche.obj') #Llamando al método Object del archivo Obj.py
+    Object('Challenger.obj') #Llamando al método Object del archivo Obj.py
 
 main()

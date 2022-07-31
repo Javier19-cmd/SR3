@@ -150,9 +150,10 @@ class Obj(object):
             if prefix == 'f': #Si el prefijo es v, entonces es un vértice.
                 #print("Cara")
                 #print(value)
-                
+                #Quitar las / y las // porque hay obj's que pueden tener las dos.
+                #Hacer un if con eso.
                 self.faces.append([
-                    list(map(int, face.split('/'))) #Quitando las diagonales.
+                    list(map(int, face.strip().split('/'))) #Quitando las diagonales.
                         for face in value.strip().split(' ') 
                     ]
                 ) #Se agrega el valor de la línea a la lista de vértices.
@@ -264,7 +265,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('Porsche.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('Jeep.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
@@ -276,7 +277,7 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (5, 5) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+scale_factor = (250, 250) #Factor de escala. Esto es algo que se tiene que recibir en la función.
 translate_factor = (500, 200) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
