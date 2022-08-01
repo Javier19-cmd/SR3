@@ -5,10 +5,20 @@ Referencias:
 2. Try except para los obj's que tienen doble /: 
     https://bobbyhadz.com/blog/python-valueerror-invalid-literal-for-int-with-base-10
 """
-lines = []
+lines = [] #Lista que guarda las líneas del archivo que lee.
+faces = [] #Lista que guarda las caras de la imagen.
+vertices = [] #Lista que guarda los vértices de la imagen.
+
+from gl import *
 
 def Object(filename):
-    global lines #Variable global para llenarla con las lineas del archivo.
+    """
+    Variables globales: 
+        1. lines: Lista que guarda las líneas del archivo que lee.
+        2. faces: Lista que guarda las caras de la imagen.
+        3. vertices: Lista que guarda los vértices de la imagen. 
+    """
+    global lines, faces, vertices
     
     with open(filename) as f: #Abriendo el archivo .obj.
         lines = f.read().splitlines() #Se leen las líneas, se hacen split y se guardan en la variable global lines.
@@ -66,3 +76,5 @@ def transform_vertex(vertex, scale, translate):
             (vertex[1] * scale[1]) + translate[1] #Y.
         )
     ]
+
+#Función que transforma las caras de la estructura de la imagen.

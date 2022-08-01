@@ -272,7 +272,7 @@ for point in tsquare:
     #print(last_point, point)
     last_point = point #Último punto.
 """
-cube = Obj('FuelTruck.obj') #Crea un objeto "o" con el archivo "cube.obj".
+cube = Obj('Bottle.obj') #Crea un objeto "o" con el archivo "cube.obj".
 
 #Función que transforma el vértice.
 def transform_vertex(vertex, scale, translate):
@@ -284,7 +284,7 @@ def transform_vertex(vertex, scale, translate):
         )
     ]
 
-scale_factor = (5, 5) #Factor de escala. Esto es algo que se tiene que recibir en la función.
+scale_factor = (3, 3) #Factor de escala. Esto es algo que se tiene que recibir en la función.
 translate_factor = (512, 512) #Traslación. Esto es algo que se tiene que recibir en la función.
 
 #Recorriendo las caras e imprimiéndolas.
