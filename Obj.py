@@ -99,6 +99,37 @@ def pintar(scale, translate):
 
             #print("Cara: ", f1, f2, f3, f4)
 
+            #Hacer el glLine de los vértices.
+            glLine(
+                   v1[0][0], #X0. 
+                   v1[0][1], #Y0.
+                   v2[0][0], #X1.
+                   v2[0][1]  #Y1.
+                   )
+            
+            glLine(
+                  v2[0][0], #X0.
+                  v2[0][1], #Y0.
+                  v3[0][0], #X1.
+                  v3[0][1] #Y1.
+                  )
+
+
+            glLine(
+                 v3[0][0], #X0.
+                 v3[0][1], #Y0.
+                 v4[0][0], #X1.
+                 v4[0][1] #Y1.
+                 )
+            
+            glLine(
+                 v4[0][0], #X0. 
+                 v4[0][1], #Y0.
+                 v1[0][0], #X1.
+                 v1[0][1] #Y1.
+                 )
+
+
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
             f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
             f2 = face[1][0] - 1 #Agarrando el índice 0.
