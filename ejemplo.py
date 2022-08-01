@@ -152,13 +152,14 @@ class Obj(object):
                 #print(value)
                 #Quitar las / y las // porque hay obj's que pueden tener las dos.
                 #Hacer un if con eso.
+                #Try-catch: Este código prueba si primero hay diagonales simples y esas diagonales las guarda en un array.
                 try:
                     self.faces.append([
                         list(map(int, face.strip().split('/'))) #Quitando las diagonales.
                             for face in value.strip().split(' ')
                         ]
                     ) #Se agrega el valor de la línea a la lista de vértices.
-                except:
+                except: #Si hay diagonales dobles, entonces las busca y las quita. Luego, las guarda en una lista.
                     self.faces.append([
                         list(map(int, face.strip().split('//'))) #Quitando las diagonales.
                             for face in value.strip().split(' ')
