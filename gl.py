@@ -174,7 +174,7 @@ def glLine(x0, y0, x1, y1):
     global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
 
     #Verifiando las propiedades del viewport.
-    print(ancho, alto, equis, ye)
+    #print(ancho, alto, equis, ye)
     
     #Obteniendo el centro del viewport.
     x = int(equis + (ancho/2))
@@ -200,7 +200,7 @@ def glLine(x0, y0, x1, y1):
 
     #Debuggeo.
     #print("Cambio en y y cambio en x ", dy, dx)
-    print("Cambio en x y cambio en y ", dx1, dy1)
+    #print("Cambio en x y cambio en y ", dx1, dy1)
 
 
     steep = dy1 > dx1 #Verificando si la línea es vertical o horizontal.
@@ -225,26 +225,26 @@ def glLine(x0, y0, x1, y1):
     #print("Offset, threshold, y ",offset, threshold, y)
 
     #Dibujando la línea.
-    for x in range(movx1, movx2):
+    for x in range(movx1, movx2 + 1):
         
         offset += dy * 2 #Cambiando el offset.
         if offset >= threshold: #Si el offset es mayor o igual al umbral, entonces se cambia la coordenada y.
             y += 1 if movy1 < movy2 else -1
             threshold += 2 * dx
 
-            print("Punto inicial: ", movx1, movy1)
-            print("Punto final: ", movx2, movy2)
+            #print("Punto inicial: ", movx1, movy1)
+            #print("Punto final: ", movx2, movy2)
 
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
-            print(y, x)
+            #print(y, x)
             #Rend2.Line(y, x)
-            print("Puntos dados en decimales ", x0, y0, x1, y1)
+            #print("Puntos dados en decimales ", x0, y0, x1, y1)
             Rend2.Vertex(y, x)
             #glVertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print(x, y)
             #Rend2.Line(x, y)
-            print("Puntos dados en decimales ", x0, y0, x1, y1)
+            #print("Puntos dados en decimales ", x0, y0, x1, y1)
             Rend2.Vertex(x, y)
             #glVertex(x, y)
 

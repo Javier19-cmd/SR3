@@ -9,7 +9,7 @@ lines = [] #Lista que guarda las líneas del archivo que lee.
 faces = [] #Lista que guarda las caras de la imagen.
 vertices = [] #Lista que guarda los vértices de la imagen.
 
-from gl import *
+from gl import * #Importando el archivo gl.py, que tiene el método para escribir la línea en el framebuffer.
 
 def Object(filename):
     """
@@ -22,10 +22,6 @@ def Object(filename):
     
     with open(filename) as f: #Abriendo el archivo .obj.
         lines = f.read().splitlines() #Se leen las líneas, se hacen split y se guardan en la variable global lines.
-
-    #Creando listas para los vértices y las caras.
-    vertices = [] #Matriz de los vértices.
-    faces = [] #Matriz para las caras.
 
     for line in lines:
 
@@ -44,8 +40,6 @@ def Object(filename):
                 )
             )
             #print(vertices) #Debuggeo.
-        else: 
-            continue
         if prefix == 'f': #Si el prefijo es f, se agrega el valor a la lista de caras.
             try: 
                 faces.append(
@@ -57,7 +51,7 @@ def Object(filename):
                         for face in value.strip().split(' ') #Se quita el espacio.
                     ]
                 )
-            except:
+            except: #Aquí se quitan las caras que tienen doble /.
                 faces.append(
                     [
                         list(
@@ -78,3 +72,9 @@ def transform_vertex(vertex, scale, translate):
     ]
 
 #Función que transforma las caras de la estructura de la imagen.
+def pintar(scale, translate):
+
+
+    print(len(lines))
+    print(len(faces))
+    print(len(vertices))

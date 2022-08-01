@@ -228,7 +228,7 @@ def line(x0, y0, x1, y1): #Función que dibuja una línea.
     
     #Recta: y = y0 + m * (x - x0)
 
-    for x in range(x0, x1):
+    for x in range(x0, x1 + 1):
         
         offset += dy * 2 #Offset de la línea.
         

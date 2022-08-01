@@ -1,4 +1,4 @@
-from utilidades import *
+from utilidades import * #Archivo de utilidades.
 
 #Variables globales.
 
