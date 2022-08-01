@@ -146,7 +146,7 @@ def glClearColor(r, g, b): #Función con la que se pueda cambiar el color con el
         #Rend2.recibirColor(color(rP, gP, bP))
 
         #print("Color en glClearColor: ", color(rP, gP, bP)) #Debuggeo.
-
+"""
 def glVertex(x, y): #Función que pueda cambiar el color de un punto de la pantalla. Las coordenadas x, y son relativas al viewport que definieron con glViewPort. glVertex(0, 0) cambia el color del punto en el centro del viewport, glVertex(1, 1) en la esquina superior derecha. glVertex(-1, -1) la esquina inferior izquierda
     #Ubicar un punto en el viewport.
     global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
@@ -168,7 +168,26 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     #print("Hola ", movx, movy) #Debugging.
 
     Rend2.Vertex(movx, movy) #Creando el punto.
+"""
 
+def glVertex(x, y): #Función que pueda cambiar el color de un punto de la pantalla. Las coordenadas x, y son relativas al viewport que definieron con glViewPort. glVertex(0, 0) cambia el color del punto en el centro del viewport, glVertex(1, 1) en la esquina superior derecha. glVertex(-1, -1) la esquina inferior izquierda
+    #Ubicar un punto en el viewport.
+    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
+
+    #Verifiando las propiedades del viewport.
+    print(ancho, alto, equis, ye)
+    
+
+    #Debuggeo.
+    print("Posiciones del punto trasladado ", x, y)
+
+    #print("Hola ", movx, movy) #Debugging.
+
+    if(0 < x < ancho) and (0 < y < alto):
+
+        Rend2.Vertex(x, y) #Creando el punto.
+
+"""
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(x0, y0, x1, y1):
     global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
@@ -247,7 +266,81 @@ def glLine(x0, y0, x1, y1):
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
             Rend2.Vertex(x, y)
             #glVertex(x, y)
+"""
 
+#Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
+def glLine(x0, y0, x1, y1):
+    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
+
+    #Redondeo para que no haya problemas con los decimales.
+    x0 = round(x0)
+    y0 = round(y0)
+    x1 = round(x1)
+    y1 = round(y1)
+
+
+    #Verifiando las propiedades del viewport.
+    #print(ancho, alto, equis, ye)
+    
+    #Moviendo el punto a la posición deseada.
+    # dy = abs(y1 - y0)
+    # dx = abs(x1 - x0)
+
+    print("Posiciones: ", x0, y0, x1, y1)
+
+    #Prueba.
+    dx = abs(x1 - x0)
+    dy = abs(y1 - y0)
+
+    #Debuggeo.
+    #print("Cambio en y y cambio en x ", dy, dx)
+    #print("Cambio en x y cambio en y ", dx1, dy1)
+
+
+    steep = dy > dx #Verificando si la línea es vertical o horizontal.
+
+    if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
+        x0, y0 = y0, x0
+        x1, y1 = y1, x1
+    
+    if x0 > x1: #Si el punto 1 está a la derecha del punto 2, entonces se cambia el orden de los puntos.
+        x0, x1 = x1, x0
+        y0, y1 = y1, y0
+
+    #Calculando los nuevos cambios.
+    dx = abs(x1 - x0)
+    dy = abs(y1 - y0)
+
+    offset = 0 #Offset de la línea.
+    threshold = dx #Umbral de la línea.	
+    y = y0 #Coordenada y de la línea.
+
+    #Verificando las variables.
+    #print("Offset, threshold, y ",offset, threshold, y)
+
+    #Dibujando la línea.
+    for x in range(x0, x1 + 1):
+        
+        offset += dy * 2 #Cambiando el offset.
+        if offset >= threshold: #Si el offset es mayor o igual al umbral, entonces se cambia la coordenada y.
+            y += 1 if y0 < y1 else -1
+            threshold += 2 * dx
+
+            #print("Punto inicial: ", movx1, movy1)
+            #print("Punto final: ", movx2, movy2)
+
+        if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
+            #print(y, x)
+            #Rend2.Line(y, x)
+            #print("Puntos dados en decimales ", x0, y0, x1, y1)
+            Rend2.Vertex(y, x)
+            #glVertex(y, x)
+        else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
+            #print(x, y)
+            #Rend2.Line(x, y)
+            #print("Puntos dados en decimales ", x0, y0, x1, y1)
+            Rend2.Vertex(x, y)
+            #glVertex(x, y)
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
     

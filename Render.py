@@ -180,7 +180,7 @@ def Line(x, y):
 def write():
         
         #Se abre el archivo con la forma de bw.
-        f = open("SR2.bmp", "bw")
+        f = open("SR3.bmp", "bw")
 
         #Se escribe el encabezado del archivo.
 
