@@ -286,7 +286,7 @@ def glLine(x0, y0, x1, y1):
     # dy = abs(y1 - y0)
     # dx = abs(x1 - x0)
 
-    print("Posiciones: ", x0, y0, x1, y1)
+    #print("Posiciones: ", x0, y0, x1, y1)
 
     #Prueba.
     dx = abs(x1 - x0)
