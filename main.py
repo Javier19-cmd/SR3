@@ -5,8 +5,14 @@ from Obj import * #Importando los métodos del archivo Obj.py
 
 def main():
     glCreateWindow(1024, 1024) #Creando la ventana.
-    # glClearColor(0.5, 0.5, 0.5) #Color del fondo.
+    glClearColor(0.5, 0.5, 0.5) #Color del fondo.
+    
     # glClear() #Limpiando el framebuffer.
+    # glViewPort(100, 200, 201, 301) #Creando el viewport.
+    
+    
+    
+    
     # Object('Porsche.obj') #Llamando al método Object del archivo Obj.py.
     # scale = (5, 5)
     # translate = (512, 512)

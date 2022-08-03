@@ -13,6 +13,7 @@ class Render(object):
         WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
         self.colorFondo = WHITE #Asignando el color blanco al framebuffer.
         self.colorP = WHITE #Asignando el color blanco al punto.
+        self.colorViewPort = WHITE #Asignando el color blanco al viewport.
 
 
 
@@ -45,39 +46,25 @@ class Render(object):
 
         self.framebuffer[y][x] = self.colorP #El color del punto es el color actual.
 
-    def colorViewPort(color):
-        #En este método se setea el color del viewport.
-        global colorV #Instanciando la variable global del color del viewport.
-
-        #Llenando la variable global.
-        colorV = color
-        print("Color del viewport", colorV)
 
     #Método que hace el viewport del archivo.
-    def View(self,posX, posY, ancho, alto):
+    def View(self, posX, posY, ancho, alto):
         #En este método se hace el viewport del archivo.
-        global Posx, Posy, Ancho, Alto, lista #Instanciando las variables globales del viewport.
-
-        #Llenando las variables globales.
-        Posx = posX
-        Posy = posY
-        Ancho = ancho
-        Alto = alto
 
         #print(Posx, Posy)
 
         #Probando la lista.
         lista = [
-                [colorV for x in range(Ancho)]
-                for y in range(Alto)
+                [self.colorViewPort for x in range(ancho)]
+                for y in range(alto)
             ]
 
         #print("Lista del viewport", lista)
 
         #Hacer una copia del viewport en el framebuffer con los índices iguales.
-        for i in range(Ancho):
-            for j in range(Alto):
-                self.framebuffer[Posx + i][Posy + j] = lista[i][j]
+        for i in range(ancho):
+            for j in range(alto):
+                self.framebuffer[posX + i][posY + j] = lista[i][j]
         
         #print(framebuffer)
 

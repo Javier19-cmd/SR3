@@ -41,6 +41,8 @@ ye0 = 0
 equis1 = 0
 ye1 = 0
 
+c1 = Render(0, 0) #Inicializando la clase Render.
+
 #Pregunar si está bien implementada esta función.
 def glInit(): #Se usará para poder inicializar cualquier objeto interno que requiera el software de render.
 
@@ -78,11 +80,12 @@ def glViewPort(x, y, width, height): #Se usará para definir el área de la imag
 
     colorV = color(0.4, 0.8, 0.08) #Creando el color del viewport.
 
-    Rend2.colorViewPort(colorV) #Recibiendo el color del viewport.
-
     #Verificando que las dimensiones del viewport sean múltiplos de 4.
     if ancho % 4 == 1 and alto % 4 == 1:
-        r.View(equis, ye, ancho, alto)
+        
+        c1.colorViewPort = colorV #Se manda a hacer el color del viewport.
+    
+        c1.View(equis, ye, ancho, alto) #Se manda a hacer el viewport.
     else: 
         print("Error")
 
@@ -119,11 +122,7 @@ def glClear(): #Se usará para que llene el mapa de bits con un solo color.
     #print(Rend.Render.framebuffer)
 
 def glClearColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glClear(). Los parámetros deben ser números en el rango de 0 a 1.
-    
-    global rP, gP, bP #Se usa para poder acceder a las variables globales.
-
-    #global Render #Se usa para poder acceder a la variable global render.
-    
+        
     #Verificando que los códigos de los colores no sean negativos.
     if r < 0 or g < 0 or b < 0:
         print("Error")
