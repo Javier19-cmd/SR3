@@ -93,6 +93,8 @@ class Render(object):
 
         #print(equis, ye)
 
+        print(x, y)
+
         #Colocar el punto en el viewport.
         self.framebuffer[y][x] = self.colorP #El color del punto es el color actual.
 

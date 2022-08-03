@@ -9,12 +9,13 @@ def main():
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     
     #Recibe posición en x,posición en y, ancho, alto.
-    glViewPort(312, 400, 301, 301) #Creando el viewport.
+    #glViewPort(400, 400, 301, 301) #Creando el viewport.
 
     glColor(0.3, 0.4, 0.7) #Asignando el color del punto.
 
     #glVertex(0.1, 0.3) #Dibujando el punto.
-    #glLine(0.1, 0.3, 0.5, 0.5) #Dibujando la línea.
+    glLine(100, 30, 200, 40) #Dibujando la línea.
+    glLine(200, 40, 300, 50) #Dibujando la línea.
     #glLine(0.1, 0.5, 0.5, 0.3) #Dibujando la línea
     
     # Object('Porsche.obj') #Llamando al método Object del archivo Obj.py.

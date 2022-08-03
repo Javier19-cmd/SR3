@@ -113,7 +113,7 @@ def glClearColor(r, g, b): #Función con la que se pueda cambiar el color con el
         #Rend2.recibirColor(color(rP, gP, bP))
 
         #print("Color en glClearColor: ", color(rP, gP, bP)) #Debuggeo.
-
+"""
 def glVertex(x, y): #Función que pueda cambiar el color de un punto de la pantalla. Las coordenadas x, y son relativas al viewport que definieron con glViewPort. glVertex(0, 0) cambia el color del punto en el centro del viewport, glVertex(1, 1) en la esquina superior derecha. glVertex(-1, -1) la esquina inferior izquierda
     #Ubicar un punto en el viewport.
     
@@ -131,9 +131,9 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     #print("Hola ", movx, movy) #Debugging.
 
     c1.Vertex(movx, movy) #Creando el punto.
-
-
 """
+
+
 def glVertex(x, y): #Función que pueda cambiar el color de un punto de la pantalla. Las coordenadas x, y son relativas al viewport que definieron con glViewPort. glVertex(0, 0) cambia el color del punto en el centro del viewport, glVertex(1, 1) en la esquina superior derecha. glVertex(-1, -1) la esquina inferior izquierda
     #Ubicar un punto en el viewport.
 
@@ -144,11 +144,11 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
 
     #print("Hola ", movx, movy) #Debugging.
 
-    if(0 < x < ancho) and (0 < y < alto):
+    if(0 < x < c1.widthV) and (0 < y < c1.heightV):
 
         c1.Vertex(x, y) #Creando el punto.
-"""
 
+"""
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(x0, y0, x1, y1):
     #global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
@@ -227,8 +227,9 @@ def glLine(x0, y0, x1, y1):
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
             c1.Vertex(x, y)
             #glVertex(x, y)
-
 """
+
+
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(x0, y0, x1, y1):
 
@@ -302,7 +303,7 @@ def glLine(x0, y0, x1, y1):
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
             c1.Vertex(x, y)
             #glVertex(x, y)
-"""
+
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
     
