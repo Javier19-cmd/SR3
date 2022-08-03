@@ -60,7 +60,7 @@ class Render(object):
         #Hacer una copia del viewport en el framebuffer con los índices iguales.
         for i in range(ancho):
             for j in range(alto):
-                self.framebuffer[posX + i][posY + j] = lista[i][j]
+                self.framebuffer[posY + j][posX + i] = lista[j][i]
         
         #print(framebuffer)
 

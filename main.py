@@ -7,7 +7,9 @@ def main():
     glCreateWindow(1024, 1024) #Creando la ventana.
     glClearColor(0, 0, 0) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
-    # glViewPort(100, 200, 201, 301) #Creando el viewport.
+    
+    #Recibe posición en x,posición en y, ancho, alto.
+    glViewPort(300, 200, 301, 301) #Creando el viewport.
     
     
     

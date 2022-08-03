@@ -182,7 +182,7 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
 
     if(0 < x < ancho) and (0 < y < alto):
 
-        Rend2.Vertex(x, y) #Creando el punto.
+        c1.Vertex(x, y) #Creando el punto.
 
 """
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
@@ -330,13 +330,13 @@ def glLine(x0, y0, x1, y1):
             #print(y, x)
             #Rend2.Line(y, x)
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
-            Rend2.Vertex(y, x)
+            c1.Vertex(y, x)
             #glVertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print(x, y)
             #Rend2.Line(x, y)
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
-            Rend2.Vertex(x, y)
+            c1.Vertex(x, y)
             #glVertex(x, y)
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
@@ -351,7 +351,7 @@ def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que 
     else:
         Color = color(r, g, b) #Se manda a hacer el color con las utilidades y se setea el color.
         print(Color)
-        Rend2.colorPunto(Color)
+        c1.colorPunto(Color)
         #print("El color del punto es: ", Color)
 def glFinish(): #Función que escribe el archivo de imagen resultante.
     #print(altoV, anchoV)
