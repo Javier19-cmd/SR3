@@ -2,18 +2,14 @@ from utilidades import * #Archivo de utilidades.
 
 class Render(object):
 
-    def __init__(self, width, height): #Constructor de la clase.
+    WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
+    colorFondo = WHITE #Asignando el color blanco al framebuffer.
+    #print("Color del fondo: ", colorFondo)
+    colorP = WHITE #Asignando el color blanco al punto.
+    colorViewPort = WHITE #Asignando el color blanco al viewport.
+    width = 0
+    height = 0
 
-        # Recibiendo las dimensiones de la pantalla.
-        self.width = width
-        self.height = height
-        print("Ancho:", self.width)
-        print("Alto:", self.height)
-        #Creando color genérico para el framebuffer.
-        WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
-        self.colorFondo = WHITE #Asignando el color blanco al framebuffer.
-        self.colorP = WHITE #Asignando el color blanco al punto.
-        self.colorViewPort = WHITE #Asignando el color blanco al viewport.
 
 
 
@@ -28,8 +24,11 @@ class Render(object):
         #Llenando de bits el framebuffer.
         self.framebuffer = [
             [self.colorFondo for x in range(self.width)]
-            for y in range(self.width)
+            for y in range(self.height)
         ]
+
+        print("Ancho y alto: ", self.width, self.height)
+        #print("Framebuffer: ", self.framebuffer)
 
 
     #Método que dibuja un punto.

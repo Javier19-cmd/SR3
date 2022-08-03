@@ -41,7 +41,7 @@ ye0 = 0
 equis1 = 0
 ye1 = 0
 
-c1 = Render(0, 0) #Inicializando la clase Render.
+c1 = Render() #Inicializando la clase Render.
 
 #Pregunar si está bien implementada esta función.
 def glInit(): #Se usará para poder inicializar cualquier objeto interno que requiera el software de render.
@@ -57,7 +57,10 @@ def glCreateWindow(width, height): #Preguntar de esta función.
         #Saber si las dimensiones son múltiplos de 4.
         if width % 4 == 0 and height % 4 == 0:
             
-            Render(width, height) #Creando las dimensiones de la pantalla.
+            #Creando las dimensiones de la pantalla.
+
+            c1.width = width #Ancho de la pantalla.
+            c1.height = height #Alto de la pantalla.
 
         elif width < 0 or height < 0: #Si las dimensiones son negativas, entonces se imprime un error.
             print("Error")
@@ -111,10 +114,7 @@ def glClear(): #Se usará para que llene el mapa de bits con un solo color.
     # else: #Si todo está bien, entonces se llena el mapa de bits con el color que se le pasa.
     #     #print(color(rP, gP, bP))
     
-    fondo = color(rP, gP, bP) #Creando el color de la línea.
-
-    Rend2.recibirColorFondo(fondo) #Recibiendo el color del fondo.
-    Rend2.Framebuffer() #Llenando el framebuffer de la pantalla.
+    c1.Framebuffer() #Llenando el framebuffer con el color que se le pasa.
 
     #Debugging.
     #print(anchoV)
@@ -130,10 +130,13 @@ def glClearColor(r, g, b): #Función con la que se pueda cambiar el color con el
         print("Error")
     else: #Si todo está bien, entonces se crea el framebuffer con el color que se le pasa.
         
-        #Llenando variables globales.
-        rP = r
-        gP = g
-        bP = b
+        #print("Color de fondo antes: ", c1.colorFondo) #Antes de cambiar el color, se imprime el color de fondo.
+        
+        colorPantalla = color(r, g, b) #Creando el color de la pantalla.
+        
+        c1.colorFondo = colorPantalla #Se manda a hacer el color de la pantalla.
+
+        #print("Color de fondo: ", c1.colorFondo) #Imprimiendo el color de la pantalla.
 
         #color(rP, gP, bP) #Color inicial de la pantalla.
        
