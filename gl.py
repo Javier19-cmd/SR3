@@ -17,29 +17,6 @@ Referencias:
 from Render import * #Importando la clase Render.
 from utilidades import *
 
-#Variables globales.
-anchoV = 0 #Ancho de la ventana.
-altoV = 0 #Alto de la ventana.
-
-
-#Color de la pantalla.
-rP = 0
-gP = 0
-bP = 0
-fondo = 0
-
-#Ubicaciones del viewport.
-equis = 0
-ye = 0
-
-#Variable global para la función glColor.
-Color = 0
-
-#Variables para la línea.
-equis0 = 0
-ye0 = 0
-equis1 = 0
-ye1 = 0
 
 c1 = Render() #Inicializando la clase Render.
 
@@ -73,22 +50,15 @@ def glCreateWindow(width, height): #Preguntar de esta función.
      #   print("Se ingresó una letra en vez de número.")
 
 def glViewPort(x, y, width, height): #Se usará para definir el área de la imagen sobre la que se va a poder dibujar.
-    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar.
-
-    #Todas las variables que se reciben se guardan en variables globales.
-    ancho = width
-    alto = height
-    equis = x
-    ye = y
 
     colorV = color(0.4, 0.8, 0.08) #Creando el color del viewport.
 
     #Verificando que las dimensiones del viewport sean múltiplos de 4.
-    if ancho % 4 == 1 and alto % 4 == 1:
+    if width % 4 == 1 and height % 4 == 1:
         
         c1.colorViewPort = colorV #Se manda a hacer el color del viewport.
-    
-        c1.View(equis, ye, ancho, alto) #Se manda a hacer el viewport.
+
+        c1.View(x, y, width, height) #Se manda a hacer el viewport.
     else: 
         print("Error")
 
@@ -143,36 +113,30 @@ def glClearColor(r, g, b): #Función con la que se pueda cambiar el color con el
         #Rend2.recibirColor(color(rP, gP, bP))
 
         #print("Color en glClearColor: ", color(rP, gP, bP)) #Debuggeo.
-"""
+
 def glVertex(x, y): #Función que pueda cambiar el color de un punto de la pantalla. Las coordenadas x, y son relativas al viewport que definieron con glViewPort. glVertex(0, 0) cambia el color del punto en el centro del viewport, glVertex(1, 1) en la esquina superior derecha. glVertex(-1, -1) la esquina inferior izquierda
     #Ubicar un punto en el viewport.
-    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
-
-    #Verifiando las propiedades del viewport.
-    print(ancho, alto, equis, ye)
     
     #Obteniendo el centro del viewport.
-    x0 = int(equis + (ancho/2))
-    y0 = int(ye + (alto/2))
+    x0 = int(c1.xV + (c1.widthV/2))
+    y0 = int(c1.yV + (c1.heightV/2))
 
     #Moviendo el punto a la posición deseada.
-    movx = x0 + int(x * (ancho/2))
-    movy = y0 + int(y * (alto/2))
+    movx = x0 + int(x * (c1.widthV/2))
+    movy = y0 + int(y * (c1.heightV/2))
 
     #Debuggeo.
     print("Posiciones del punto trasladado ", movx, movy)
 
     #print("Hola ", movx, movy) #Debugging.
 
-    Rend2.Vertex(movx, movy) #Creando el punto.
-"""
+    c1.Vertex(movx, movy) #Creando el punto.
 
+
+"""
 def glVertex(x, y): #Función que pueda cambiar el color de un punto de la pantalla. Las coordenadas x, y son relativas al viewport que definieron con glViewPort. glVertex(0, 0) cambia el color del punto en el centro del viewport, glVertex(1, 1) en la esquina superior derecha. glVertex(-1, -1) la esquina inferior izquierda
     #Ubicar un punto en el viewport.
-    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
 
-    #Verifiando las propiedades del viewport.
-    print(ancho, alto, equis, ye)
     
 
     #Debuggeo.
@@ -183,32 +147,32 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     if(0 < x < ancho) and (0 < y < alto):
 
         c1.Vertex(x, y) #Creando el punto.
-
 """
+
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(x0, y0, x1, y1):
-    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
+    #global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
 
     #Verifiando las propiedades del viewport.
     #print(ancho, alto, equis, ye)
     
     #Obteniendo el centro del viewport.
-    x = int(equis + (ancho/2))
-    y = int(ye + (alto/2))
+    x = int(c1.xV + (c1.widthV/2))
+    y = int(c1.yV + (c1.heightV/2))
 
     #Obteniendo las coordenadas de x0 y y0 con respecto al viewport.
-    movx1 = x + int(x0 * (ancho/2))
-    movy1 = y + int(y0 * (alto/2))
+    movx1 = x + int(x0 * (c1.widthV/2))
+    movy1 = y + int(y0 * (c1.heightV/2))
 
     #Obteniendo las coordenadas de x1 y y1 con respecto al viewport.
-    movx2 = x + int(x1 * (ancho/2))
-    movy2 = y + int(y1 * (alto/2))
+    movx2 = x + int(x1 * (c1.widthV/2))
+    movy2 = y + int(y1 * (c1.heightV/2))
 
     #Moviendo el punto a la posición deseada.
     # dy = abs(y1 - y0)
     # dx = abs(x1 - x0)
 
-    print("Posiciones del viewport ", equis, ye)
+    print("Posiciones del viewport ", c1.xV, c1.yV)
 
     #Prueba.
     dx1 = abs(movx2 - movx1)
@@ -255,19 +219,19 @@ def glLine(x0, y0, x1, y1):
             #print(y, x)
             #Rend2.Line(y, x)
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
-            Rend2.Vertex(y, x)
+            c1.Vertex(y, x)
             #glVertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print(x, y)
             #Rend2.Line(x, y)
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
-            Rend2.Vertex(x, y)
+            c1.Vertex(x, y)
             #glVertex(x, y)
-"""
 
+"""
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(x0, y0, x1, y1):
-    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
+
 
     #Redondeo para que no haya problemas con los decimales.
     x0 = round(x0)
@@ -338,6 +302,7 @@ def glLine(x0, y0, x1, y1):
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
             c1.Vertex(x, y)
             #glVertex(x, y)
+"""
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
     
@@ -349,9 +314,13 @@ def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que 
     elif r > 1 or g > 1 or b > 1:
         print("Error")
     else:
+        
+        #print("Color antes de ser cambiado: ", c1.colorP)
         Color = color(r, g, b) #Se manda a hacer el color con las utilidades y se setea el color.
-        print(Color)
-        c1.colorPunto(Color)
+        #print("Color en gl: ", Color)
+        c1.colorP = Color #Se setea el color del punto.
+        #print("Color cambiando en el Render: ", c1.colorP)
+
         #print("El color del punto es: ", Color)
 def glFinish(): #Función que escribe el archivo de imagen resultante.
     #print(altoV, anchoV)

@@ -6,10 +6,16 @@ class Render(object):
     WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
     colorFondo = WHITE #Asignando el color blanco al framebuffer.
     #print("Color del fondo: ", colorFondo)
-    colorP = WHITE #Asignando el color blanco al punto. Esto es temporal.
     colorViewPort = WHITE #Asignando el color blanco al viewport. Esto es temporal-
-    width = 0 #Ancho. Esto es temporal.
-    height = 0 #Alto. Esto es temporal.
+    width = 0 #Ancho de la pantalla. Esto es temporal.
+    height = 0 #Alto de la pantalla. Esto es temporal.
+    
+    widthV = 0 #Ancho del viewport. Esto es temporal.
+    heightV = 0 #Alto del viewport. Esto es temporal.
+
+    xV = 0 #Posición en x del viewport.
+    yV = 0 #Posición en y del viewport.
+    colorP = WHITE #Asignando el color blanco al punto. Esto es temporal.
 
     #Método que escribe el framebuffer.
     def Framebuffer(self):
@@ -48,6 +54,10 @@ class Render(object):
         #En este método se hace el viewport del archivo.
 
         #print(Posx, Posy)
+        self.xV = posX
+        self.yV = posY
+        self.widthV = ancho
+        self.heightV = alto
 
         #Probando la lista.
         lista = [
@@ -78,16 +88,13 @@ class Render(object):
 
     def Vertex(self,x, y):
         #En este método se dibuja un punto en el viewport.
-        global equis, ye #Instanciando las variables globales de las posiciones del punto.
+        #global equis, ye #Instanciando las variables globales de las posiciones del punto.
 
-        #Llenando las variables globales.
-        equis = x
-        ye = y
 
         #print(equis, ye)
 
         #Colocar el punto en el viewport.
-        self.framebuffer[ye][equis] = self.colorP #El color del punto es el color actual.
+        self.framebuffer[y][x] = self.colorP #El color del punto es el color actual.
 
 
         #print("Coordenadas del punto: ", ye, equis)
