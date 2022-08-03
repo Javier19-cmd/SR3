@@ -7,29 +7,15 @@ class Render(object):
         # Recibiendo las dimensiones de la pantalla.
         self.width = width
         self.height = height
-
-    #Este método recibe el color del framebuffer.
-    def recibirColorFondo(color):
-        #En este método se setea el color del framebuffer.
-        global colorP #Instanciando la variable global del color de la pantalla.
-
-        #Llenando el framebuffer.
-        colorP = color
+        #Creando color genérico para el framebuffer.
+        WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
+        self.colorFondo = WHITE #Asignando el color blanco al framebuffer.
+        self.colorP = WHITE #Asignando el color blanco al punto.
 
 
-    #Método que renderiza el archivo.
-    def DimensionesPantalla(width, height):
-        #En este método se setea el ancho y alto de la pantalla.
-        global anchoP, altoP #Instanciando las variables globales del ancho y alto de la pantalla.
-
-        #Llenando las variables globales.
-        anchoP = width
-        altoP = height
 
     #Método que escribe el framebuffer.
-    def Framebuffer():
-        #En este método se escribe el framebuffer.
-        global framebuffer
+    def Framebuffer(self):
 
         #print(colorP)
 
@@ -37,22 +23,14 @@ class Render(object):
 
 
         #Llenando de bits el framebuffer.
-        framebuffer = [
-            [colorP for x in range(anchoP)]
-            for y in range(altoP)
+        self.framebuffer = [
+            [self.colorFondo for x in range(self.width)]
+            for y in range(self.width)
         ]
 
-    #Seteando el color del punto.
-    def colorPunto(color):
-        #En este método se setea el color del punto.
-        global colorA #Instanciando la variable global del color del punto.
-
-        #Llenando la variable global.
-        colorA = color
-        print("Color del punto", colorA)
 
     #Método que dibuja un punto.
-    def punto(x, y):
+    def punto(self,x, y):
         #En este método se dibuja un punto en la pantalla.
         global equis, ye #Instanciando las variables globales de las posiciones del punto.
 
@@ -63,7 +41,7 @@ class Render(object):
         #Esta función dibuja un punto en la pantalla.
         #print(framebufobsfer[x][y])
 
-        framebuffer[y][x] = colorA #El color del punto es el color actual.
+        self.framebuffer[y][x] = self.colorP #El color del punto es el color actual.
 
     def colorViewPort(color):
         #En este método se setea el color del viewport.
@@ -74,7 +52,7 @@ class Render(object):
         print("Color del viewport", colorV)
 
     #Método que hace el viewport del archivo.
-    def View(posX, posY, ancho, alto):
+    def View(self,posX, posY, ancho, alto):
         #En este método se hace el viewport del archivo.
         global Posx, Posy, Ancho, Alto, lista #Instanciando las variables globales del viewport.
 
@@ -97,7 +75,7 @@ class Render(object):
         #Hacer una copia del viewport en el framebuffer con los índices iguales.
         for i in range(Ancho):
             for j in range(Alto):
-                framebuffer[Posx + i][Posy + j] = lista[i][j]
+                self.framebuffer[Posx + i][Posy + j] = lista[i][j]
         
         #print(framebuffer)
 
@@ -192,7 +170,7 @@ class Render(object):
             #Pintando el archivo de color negro.
             for y in range(self.height):
                 for x in range(self.width):
-                    f.write(framebuffer[y][x])
+                    f.write(self.framebuffer[y][x])
 
             #print(framebuffer)
             #print("Lista temporal en write", lista)
