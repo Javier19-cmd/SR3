@@ -7,6 +7,8 @@ class Render(object):
         # Recibiendo las dimensiones de la pantalla.
         self.width = width
         self.height = height
+        print("Ancho:", self.width)
+        print("Alto:", self.height)
         #Creando color genérico para el framebuffer.
         WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
         self.colorFondo = WHITE #Asignando el color blanco al framebuffer.
@@ -91,7 +93,7 @@ class Render(object):
         #framebuffer[Posx][Posy] = colorV #El color del viewport es el color actual.
 
 
-    def Vertex(x, y):
+    def Vertex(self,x, y):
         #En este método se dibuja un punto en el viewport.
         global equis, ye #Instanciando las variables globales de las posiciones del punto.
 
@@ -102,7 +104,7 @@ class Render(object):
         #print(equis, ye)
 
         #Colocar el punto en el viewport.
-        framebuffer[ye][equis] = colorA
+        self.framebuffer[ye][equis] = self.colorP #El color del punto es el color actual.
 
 
         #print("Coordenadas del punto: ", ye, equis)

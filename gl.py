@@ -14,7 +14,7 @@ Referencias:
 8. Simular un do-while: https://www.freecodecamp.org/espanol/news/python-bucle-do-while-ejemplos-de-bucles/#:~:text=Para%20crear%20un%20bucle%20do%20while%20en%20Python%2C%20necesitas%20modificar,verdadero%20se%20ejecutará%20otra%20vez.
 """
 
-import Render as Rend2 #Importando la clase Render.
+from Render import * #Importando la clase Render.
 from utilidades import *
 
 #Variables globales.
@@ -50,17 +50,12 @@ def glInit(): #Se usará para poder inicializar cualquier objeto interno que req
 
 def glCreateWindow(width, height): #Preguntar de esta función.
     #Se usará para inicializar el framebuffer con un tamaño (la imagen resultante va a ser de este tamaño)
-    global anchoV, altoV #Variables globales, que servirán para definir el tamaño de la imagen resultante.
 
     try: #Verificar que el tamaño sea un número.
         #Saber si las dimensiones son múltiplos de 4.
         if width % 4 == 0 and height % 4 == 0:
             
-            #Llenando variables globales. Estas son para el ancho de la ventana y el alto de la ventana.
-            anchoV = width 
-            altoV = height
-
-            Rend2.DimensionesPantalla(anchoV, altoV) #Creando la ventana.
+            Render(width, height) #Creando las dimensiones de la pantalla.
 
         elif width < 0 or height < 0: #Si las dimensiones son negativas, entonces se imprime un error.
             print("Error")
@@ -87,7 +82,7 @@ def glViewPort(x, y, width, height): #Se usará para definir el área de la imag
 
     #Verificando que las dimensiones del viewport sean múltiplos de 4.
     if ancho % 4 == 1 and alto % 4 == 1:
-        Rend2.View(equis, ye, ancho, alto)
+        r.View(equis, ye, ancho, alto)
     else: 
         print("Error")
 
