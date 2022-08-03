@@ -58,10 +58,8 @@ class Object(object):
                         ]
                     )
 
-
-
-    #Función que transforma los vértices de la estructura de la imagen.
-    def transform_vertex(vertex, scale, translate): 
+#Función que transforma los vértices de la estructura de la imagen.
+    def transform_vertex(self, vertex, scale, translate): 
         
         return [
             (

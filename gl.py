@@ -140,7 +140,7 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     
 
     #Debuggeo.
-    print("Posiciones del punto trasladado ", x, y)
+    #print("Posiciones del punto trasladado ", x, y)
 
     #print("Hola ", movx, movy) #Debugging.
 

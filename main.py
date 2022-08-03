@@ -17,11 +17,12 @@ def main():
     #glLine(100, 30, 200, 40) #Dibujando la línea.
     #glLine(200, 40, 300, 50) #Dibujando la línea.
     #glLine(0.1, 0.5, 0.5, 0.3) #Dibujando la línea
+    glColor(0.5, 0.3, 0.1) #Asignando el color del punto.
     
     r = Object('Porsche.obj') #Llamando al método Object del archivo Obj.py.
     scale = (5, 5)
     translate = (512, 512)
-    
+
     #Recorriendo las caras e imprimiéndolas.
     for face in r.faces: 
         #print(face) #Debuggeo.
@@ -78,7 +79,7 @@ def main():
             f3 = face[2][0] - 1 #Agarrando el índice 1.
             #f4 = face[3][0] - 1 #Agarrando el índice 2.
 
-            print(r.vertices[f1], scale, translate)
+            #print(r.vertices[f1], scale, translate)
 
             #Transformando los vértices.
             v1 = r.transform_vertex(r.vertices[f1], scale, translate)
@@ -111,7 +112,6 @@ def main():
                 v1[0][1] #Y del vértice 1.
             )
 
-    glColor(0.5, 0.3, 0.1)
     # pintar(scale, translate)
     glFinish()
 
