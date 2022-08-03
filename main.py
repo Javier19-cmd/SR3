@@ -5,8 +5,7 @@ from Obj import * #Importando los métodos del archivo Obj.py
 
 def main():
     glCreateWindow(1024, 1024) #Creando la ventana.
-    glClearColor(0.7, 0.7, 0.7) #Color del fondo.
-
+    glClearColor(0, 0, 0) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     # glViewPort(100, 200, 201, 301) #Creando el viewport.
     
@@ -18,6 +17,6 @@ def main():
     # translate = (512, 512)
     # glColor(0.5, 0.3, 0.1)
     # pintar(scale, translate)
-    # glFinish()
+    glFinish()
 
 main()

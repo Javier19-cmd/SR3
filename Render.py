@@ -2,16 +2,14 @@ from utilidades import * #Archivo de utilidades.
 
 class Render(object):
 
+    #Estas variables son globales y tienen valores por defecto y arbitrarios.
     WHITE = color(1, 1, 1) #Color blanco hecho con las utilidades.
     colorFondo = WHITE #Asignando el color blanco al framebuffer.
     #print("Color del fondo: ", colorFondo)
-    colorP = WHITE #Asignando el color blanco al punto.
-    colorViewPort = WHITE #Asignando el color blanco al viewport.
-    width = 0
-    height = 0
-
-
-
+    colorP = WHITE #Asignando el color blanco al punto. Esto es temporal.
+    colorViewPort = WHITE #Asignando el color blanco al viewport. Esto es temporal-
+    width = 0 #Ancho. Esto es temporal.
+    height = 0 #Alto. Esto es temporal.
 
     #Método que escribe el framebuffer.
     def Framebuffer(self):
@@ -19,7 +17,6 @@ class Render(object):
         #print(colorP)
 
         #print(colorP)
-
 
         #Llenando de bits el framebuffer.
         self.framebuffer = [
