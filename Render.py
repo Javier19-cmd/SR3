@@ -85,7 +85,6 @@ class Render(object):
 
         #framebuffer[Posx][Posy] = colorV #El color del viewport es el color actual.
 
-
     def Vertex(self,x, y):
         #En este método se dibuja un punto en el viewport.
         #global equis, ye #Instanciando las variables globales de las posiciones del punto.
@@ -120,6 +119,9 @@ class Render(object):
         #print("Coordenadas del punto: ", equis, ye)
         print("Punto: ", framebuffer[equis][ye])
     """
+
+
+
     #Método que escribe el archivo bmp.
     def write(self):
             
