@@ -146,7 +146,7 @@ class Render(object):
             f.write(word(1)) #Número de planos. Esto es de 2 bytes, por eso se utiliza el word.
             f.write(word(24)) #24 bits por pixel. Esto es porque usa el true color y el RGB.
             f.write(dword(0)) #Esto es la compresión. Esto es de 4 bytes, por eso se utiliza el dword.
-            f.write(dword(self.width * self.width * 3)) #Tamaño de la imagen sin el header.
+            f.write(dword(self.width * self.height * 3)) #Tamaño de la imagen sin el header.
             #Pixels que no se usarán mucho.
             f.write(dword(0))
             f.write(dword(0))
